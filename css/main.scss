@@ -1,0 +1,391 @@
+@import './colors';
+@import './components';
+@import './mixins';
+
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	font-size: 62.5%;
+	scroll-behavior: smooth;
+}
+
+body {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 1.6rem;
+}
+
+.scroll-up {
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	width: 40px;
+	height: 30px;
+	padding: 1em;
+	cursor: pointer;
+	z-index: 1000;
+	color: $pure-white;
+	font-size: 4rem;
+}
+
+.burger-btn {
+	position: fixed;
+	top: 20px;
+	right: 20px;
+	padding: 1em;
+	background: none;
+	border: 1px solid transparent;
+	cursor: pointer;
+	z-index: 2001;
+
+	&:hover {
+		.burger-btn__bars::before,
+		.burger-btn__bars::after {
+			width: 100%;
+		}
+	}
+
+	&__box {
+		position: relative;
+		width: 40px;
+		height: 30px;
+	}
+
+	&__bars,
+	&__bars::before,
+	&__bars::after {
+		@include burgerBtn;
+	}
+
+	&__bars {
+		width: 100%;
+
+		&::after {
+			top: 13px;
+			width: 60%;
+		}
+
+		&::before {
+			top: 27px;
+			width: 30%;
+			transition-delay: 0.1s;
+		}
+	}
+}
+
+.nav {
+	position: fixed;
+	top: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	width: 100%;
+	transform: translateX(100%);
+	transition: 0.5s cubic-bezier(0.65, 0.05, 0.36, 1);
+	background-image: $gradient-solid;
+	z-index: 2000;
+
+	&--active {
+		transform: translateX(0);
+	}
+
+	&__item {
+		position: relative;
+		display: block;
+		margin: 0.5em 0;
+		padding: 0.5em 2em;
+		font-size: 2.8rem;
+		color: $pure-white;
+		text-decoration: none;
+
+		&::before {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 3px;
+			height: 100%;
+			transform: scaleY(0);
+			background-color: $pure-white;
+			transition: transform 0.3s;
+			content: '';
+		}
+
+		&:hover::before {
+			transform: scaleY(1);
+		}
+	}
+}
+
+@-webkit-keyframes navItemsAnimation {
+	from {
+		transform: translateX(200%);
+	}
+	to {
+		transform: translateX(0);
+	}
+}
+
+@keyframes navItemsAnimation {
+	from {
+		transform: translateX(200%);
+	}
+	to {
+		transform: translateX(0);
+	}
+}
+
+.nav-items-animation {
+	-webkit-animation: navItemsAnimation 1s both;
+	animation: navItemsAnimation 1s both;
+}
+
+.black-bars-color,
+.black-bars-color::after,
+.black-bars-color::before {
+	background-color: $dark;
+}
+
+.scroll-up-color,
+.scroll-up-color::after,
+.scroll-up-color::before {
+	color: $dark;
+}
+
+.header {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	padding: 2em;
+	height: 100vh;
+	text-align: center;
+	color: $pure-white;
+	background-image: $gradient, url('/img/outdoor-small.jpg');
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+
+	&__heading {
+		font-family: 'Dancing Script', cursive;
+		font-size: 4.8rem;
+		font-weight: 300;
+	}
+	&__text {
+		font-size: 1.4rem;
+	}
+
+	&__btn {
+		margin-top: 2em;
+		padding: 0.8em 1.6em;
+		font-size: 1.4rem;
+		background-color: $pure-white;
+		border: none;
+		border-radius: 8px;
+		color: $dark;
+		text-decoration: none;
+		text-transform: uppercase;
+		cursor: pointer;
+		transition: transform 0.3s;
+		&:hover {
+			transform: scale(1.05);
+		}
+		&::before {
+			background-color: $light-white;
+		}
+	}
+}
+
+.rooms {
+	&__box {
+		display: flex;
+		flex-direction: column;
+		margin: 2em 0;
+		overflow: hidden;
+	}
+	&__img {
+		width: 100%;
+		margin-bottom: 1em;
+		border: 2px solid $main-color;
+		border-radius: 8px;
+	}
+	&__title {
+		margin-bottom: 0.5em;
+		color: $main-color;
+	}
+	&__text {
+		font-size: 1.4rem;
+	}
+}
+
+.info {
+	position: relative;
+	background-image: $gradient, url('/img/outdoor-small.jpg');
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+	overflow: hidden;
+	.section-heading {
+		color: $pure-white;
+	}
+	&__element {
+		margin: 1em 0;
+		padding: 2em;
+		border-radius: 8px;
+		box-shadow: 5px 5px 10px rgba(46, 46, 46, 0.18);
+		background-color: $pure-white;
+		overflow: hidden;
+		z-index: 10;
+		transition: transform 0.3s;
+		&-heading {
+			margin-bottom: 0.5em;
+			font-size: 3rem;
+			font-weight: 600;
+			color: $main-color;
+		}
+		&-text {
+			margin-bottom: 0.5em;
+			font-size: 1.7rem;
+			color: $dark;
+		}
+		&:hover {
+			transform: scale(0.95);
+		}
+	}
+}
+
+.contact {
+	position: relative;
+	background-color: $pure-white;
+	overflow: hidden;
+	&__text {
+		margin-bottom: 1em;
+		font-size: 2rem;
+		color: $dark;
+		text-align: center;
+	}
+	&__mini-heading {
+		padding-bottom: 1em;
+		font-size: 2.5rem;
+		text-align: center;
+	}
+}
+
+.footer {
+	padding: 2em;
+	color: $pure-white;
+	background-color: $dark;
+	&__text {
+		text-align: center;
+	}
+}
+
+@media (min-width: 576px) {
+	.rooms {
+		&__box {
+			flex-direction: row;
+			justify-content: space-between;
+
+			&-text {
+				width: 55%;
+
+				&--right {
+					text-align: right;
+				}
+			}
+			&-img {
+				width: 40%;
+
+				&--right {
+					order: 1;
+				}
+			}
+		}
+		&__img {
+			margin-bottom: 0;
+			max-height: 300px;
+		}
+	}
+	.info {
+		&__element {
+			margin: 2em 0;
+			width: 100%;
+
+			&-heading {
+				margin-bottom: 0.5em;
+				font-style: 3.6rem;
+			}
+		}
+	}
+}
+
+@media (min-width: 768px) {
+	.header {
+		&__heading {
+			font-size: 6.6rem;
+		}
+		&__text {
+			font-size: 2.2rem;
+		}
+		&__btn {
+			font-size: 1.6rem;
+		}
+	}
+	.rooms {
+		&__text {
+			font-size: 1.8rem;
+		}
+	}
+}
+@media (min-width: 992px) {
+	.burger-btn {
+		top: 50px;
+		right: 50px;
+	}
+	.scroll-up {
+		bottom: 50px;
+		right: 50px;
+	}
+	.header {
+		background-image: $gradient, url('../img/outdoor-big.jpg');
+		&__heading {
+			font-size: 10rem;
+		}
+	}
+	.nav {
+		&__item {
+			font-size: 4.8rem;
+		}
+	}
+	.rooms {
+		&__box {
+			margin: 5em 0;
+			&-text {
+				display: flex;
+				flex-direction: column;
+				justify-content: flex-end;
+				margin-bottom: 2.5em;
+			}
+		}
+		&__title {
+			font-size: 3.6rem;
+		}
+		&__text {
+			font-size: 2.2rem;
+		}
+	}
+	.info {
+		background-image: $gradient, url('../img/outdoor-big.jpg');
+		&__element {
+			&-text {
+				font-size: 1.5rem;
+			}
+		}
+	}
+}

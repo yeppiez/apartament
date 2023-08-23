@@ -1,0 +1,9 @@
+@mixin burgerBtn {
+	position: absolute;
+	right: 0;
+	height: 4px;
+	content: '';
+	background-color: $pure-white;
+	transition: width 0.3s;
+	border-radius: 8px;
+}
