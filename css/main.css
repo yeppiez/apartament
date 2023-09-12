@@ -81,12 +81,15 @@ body {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  width: 40px;
-  height: 30px;
   padding: 1em;
   cursor: pointer;
   z-index: 1000;
   color: #fff;
+}
+.scroll-up__btn {
+  position: relative;
+  width: 40px;
+  height: 40px;
   font-size: 4rem;
 }
 
